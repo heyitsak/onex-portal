@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Demo Member",
+    "email": "demo@onex.com",
+    "password": "$2a$12$example_hashed_password",
+    "role": "member",
+    "bio": "Space & tech enthusiast",
+    "avatar": "",
+    "joinedAt": 1781603171941,
+    "socialLinks": {
+      "github": "",
+      "twitter": "",
+      "discord": ""
+    }
+  }
+]
