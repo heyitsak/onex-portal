@@ -3,7 +3,17 @@ import jwt from 'jsonwebtoken';
 import { cookies } from 'next/headers';
 import { db, type Member } from './db';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'onex-portal-member-secret-2024';
+function getJwtSecret(): string {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('JWT_SECRET environment variable is missing.');
+    }
+    return 'dev-secret-do-not-use-in-production';
+  }
+  return secret;
+}
+
 const COOKIE_NAME = 'onex_member_token';
 
 export async function hashPassword(password: string): Promise<string> {
@@ -16,12 +26,12 @@ export async function verifyPassword(password: string, hash: string): Promise<bo
 }
 
 export function signMemberToken(memberId: number): string {
-  return jwt.sign({ memberId, type: 'member' }, JWT_SECRET, { expiresIn: '7d' });
+  return jwt.sign({ memberId, type: 'member' }, getJwtSecret(), { expiresIn: '7d' });
 }
 
 export function verifyMemberToken(token: string): { memberId: number } | null {
   try {
-    const payload = jwt.verify(token, JWT_SECRET) as { memberId: number; type: string };
+    const payload = jwt.verify(token, getJwtSecret()) as { memberId: number; type: string };
     if (payload.type !== 'member') return null;
     return { memberId: payload.memberId };
   } catch { return null; }
