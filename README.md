@@ -1,5 +1,10 @@
 # 🚀 OneX Member Portal
 
+[![CI Verification](https://github.com/heyitsak/onex-portal/actions/workflows/ci.yml/badge.svg)](https://github.com/heyitsak/onex-portal/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![Next.js 16](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](package.json)
+[![React 19](https://img.shields.io/badge/React-19-blue?style=flat-square&logo=react)](package.json)
+
 A full-stack member management and service portal built with Next.js 16 (App Router), React 19, Tailwind CSS v4, and TypeScript.
 
 ## ✨ Features
